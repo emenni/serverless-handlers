@@ -67,7 +67,7 @@ function splitString(req) {
 
   // TODO - Another function from here
   // Convert from str
-  text[1] = Number(text[1].replace(',', '.')).toLocaleString('pt-BR');
+  //text[1] = Number(text[1].replace(',', '.')).toLocaleString('pt-BR');
 
   let [day, month, year] = text[3].replace(',', '').split('/');
   text[3] = new Date(+year || new Date().getFullYear(), +month - 1, +day);
