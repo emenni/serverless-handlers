@@ -43,7 +43,7 @@ function splitString(req) {
 
   if ((!useServerFormat && !separators) || useServerFormat) {
     separators = [
-      { token: ' - ', startIndex: 0 },
+      { token: '/ - (.*)/s', startIndex: 0 },
       { token: 'valor', startIndex: 1 },
       { token: ' ', startIndex: 1 },
     ];
