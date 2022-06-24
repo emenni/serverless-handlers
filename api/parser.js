@@ -23,6 +23,7 @@ async function checkInput(req) {
   const separatorsSchema = Yup.object().shape({
     token: Yup.string().required(),
     startIndex: Yup.number().required(),
+    regex: Yup.boolean(),
   });
 
   const schema = Yup.object().shape({
@@ -39,11 +40,11 @@ function textResponse(res, jsonResponse) {
 }
 
 function splitString(req) {
-  let { text, separators, useServerFormat } = req.body || req.query;
+  let { text, separators, useServerFormat, regex } = req.body || req.query;
 
   if ((!useServerFormat && !separators) || useServerFormat) {
     separators = [
-      { token: '/ - (.*)/s', startIndex: 0 },
+      { token: new RegExp(' - (.*)'), startIndex: 0 },
       { token: 'valor', startIndex: 1 },
       { token: ' ', startIndex: 1 },
     ];
@@ -53,7 +54,13 @@ function splitString(req) {
 
   for (let sep in separators) {
     text = [
-      ...text[separators[sep].startIndex].trim().split(separators[sep].token),
+      ...text[separators[sep].startIndex]
+        .trim()
+        .split(
+          separators[sep].regex
+            ? new RegExp(separators[sep].token)
+            : separators[sep].token
+        ),
       ...text,
     ];
   }
