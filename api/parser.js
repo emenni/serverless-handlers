@@ -65,6 +65,7 @@ function splitString(req) {
     ];
   }
 
+  // TODO - Another function from here
   // Convert from str
   text[1] = Number(text[1]).toLocaleString('pt-BR');
 
