@@ -65,6 +65,9 @@ function splitString(req) {
     ];
   }
 
+  // Convert from str
+  text[1] = Number(text[1]);
+
   // TODO format result
   return Object.fromEntries(
     new Map([
