@@ -66,7 +66,7 @@ function splitString(req) {
   }
 
   // Convert from str
-  text[1] = Number(text[1]);
+  text[1] = Number(text[1].replace(',', '.'));
 
   // TODO format result
   return Object.fromEntries(
