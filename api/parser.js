@@ -68,7 +68,7 @@ function splitString(req) {
   // Convert from str
   text[1] = Number(text[1].replace(',', '.'));
 
-  let [day, month, year] = text[3].split('/');
+  let [day, month, year] = text[3].replace(',', '').split('/');
   text[3] = new Date(+year || new Date().getFullYear(), +month - 1, +day);
 
   // TODO format result
